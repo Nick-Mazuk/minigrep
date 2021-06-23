@@ -16,11 +16,11 @@ impl Config {
 
         let query = match args.next() {
             Some(arg) => arg,
-            None => return Err("Missing the query string")
+            None => return Err("Missing the query string"),
         };
         let file_name = match args.next() {
             Some(arg) => arg,
-            None => return Err("Missing the file name")
+            None => return Err("Missing the file name"),
         };
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
@@ -50,11 +50,17 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
-    contents.lines().filter(|line| line.to_lowercase().contains(&query)).collect()
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query))
+        .collect()
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    contents.lines().filter(|line| line.contains(query)).collect()
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 #[cfg(test)]
