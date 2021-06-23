@@ -2,8 +2,8 @@ use std::env;
 use std::process;
 
 mod lib;
-use lib::Config;
 use lib::run;
+use lib::Config;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
